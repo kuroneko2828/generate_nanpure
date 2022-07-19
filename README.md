@@ -1,7 +1,7 @@
 # solve_sudoku (sudoku.c)
 数独を解くプログラム。
 
-# Features
+## Features
 
 * 網羅的探索を用いずに（人間が使う解放と同じ方法で）、「超激辛数独6 (ISBN: 9784890729760)」の全問題に解答ができた。
 
@@ -14,7 +14,7 @@
 # generate_sudoku (generate.c)
 数独を生成するプログラム。
 
-# Features
+## Features
 
 * 上述の数独解答プログラムを利用した数独生成システム。
 
