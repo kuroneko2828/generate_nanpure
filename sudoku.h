@@ -64,7 +64,9 @@ int answer(void){
     clock_t start,end;
 #endif
     //input();
+    //printf("begin%d\n", clock());
     impos1();
+    //printf("end\n");
     before=complete=0;
     before_pos=num_pos=0;
 #ifdef CLOCK
@@ -96,6 +98,7 @@ int answer(void){
     }
 
     do{
+        //printf("%d\n", complete);
         before=complete;
         complete=0;
         before_pos=num_pos;
@@ -683,6 +686,7 @@ void impos5_1(){
 //候補の組み合わせをすべて試すために再帰を使用
 void impos5_2(int equal_n,int n[9],int i,int j,int b,int N){ //最初はb=0,N=1;
     int a;
+    //printf("%d\n", b);
     for(a=b+1;a<=9;a++){
         if(!pos[i][j][a-1]) continue;
         if(N<=equal_n)

@@ -242,8 +242,10 @@ int main(){
             }
         }
         //printf("OK\n");
+        //printf("begin%d\n", time(0));
         if (g()==1)
             break;
+        //printf("end\n");
     }
     printf("問題\n");
     show();
