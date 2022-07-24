@@ -9,9 +9,25 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <p id="title"></p>
+    <button onclick="location.href='./'">Easy</button>
+    <button onclick="location.href='.?level=hard'">Hard</button>
     <table id="nanpure"></table>
     <table id="kouho"></table>
     <script src="main.js"></script>
+    <button type="button" onclick="reset()">リセット</button>
+    <br>
+    <!-- 折り畳み展開 -->
+    <span onclick="obj=document.getElementById('open1').style; obj.display=
+    (obj.display=='none')?'block':'none';">
+    <a style="cursor:pointer;">▼ 答えを表示</a>
+    </span>
+    <ul>
+    <!-- 折り畳まれる部分 -->
+    <span id="open1" style="display: none; clear: both;">
+    <table id="kaitou"></table>
+    </span>
+    </ul>
 </body>
 
 </html>

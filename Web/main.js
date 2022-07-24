@@ -4,7 +4,6 @@ let answer;
 get_mondai();
 function init(){
     const table = document.getElementById("nanpure");
-    //table.innerHTML = "<tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr>";
     for(let i = 0; i < 9; i ++){
         let tr = document.createElement("tr");
         for(let j = 0; j < 9; j ++){
@@ -19,6 +18,16 @@ function init(){
             tr.appendChild(td);
         }
         table.appendChild(tr);
+    }
+    const kaitou = document.getElementById("kaitou");
+    for(let i = 0; i < 9; i ++){
+        let tr = document.createElement("tr");
+        for(let j = 0; j < 9; j ++){
+            let td = document.createElement("td");
+            td.textContent = answer[i][j];
+            tr.appendChild(td);
+        }
+        kaitou.appendChild(tr);
     }
     const kouho = document.getElementById("kouho");
     let tr = document.createElement("tr");
@@ -36,7 +45,19 @@ function init(){
 }
 
 function get_mondai(){
-    $.getJSON("json/nanpure_easy.json")
+    let file_name;
+    let p = document.getElementById("title")
+    let url = new URL(window.location.href);
+    let params = url.searchParams;
+    if (params.get('level') == "hard"){
+        file_name = "json/nanpure_hard.json";
+        p.textContent="Hard";
+    }else{
+        file_name = "json/nanpure_easy.json";
+        p.textContent="Easy";
+    }
+
+    $.getJSON(file_name)
     .done(function (json) {
         var l = json.length;
         var a = Math.floor(Math.random()*l);
@@ -79,5 +100,18 @@ function select_masu(e){
 function select_kouho(e){
     if (masu != null){
         masu.textContent =  e.target.textContent;
+    }
+}
+
+function reset(){
+    const nanpure = document.getElementById("nanpure");
+    const tr = nanpure.querySelectorAll("tr");
+    for (let i = 0; i < 9; i ++){
+        let td = tr[i].querySelectorAll("td");
+        for (let j = 0; j < 9; j ++){
+            if (td[j].classList.contains("click_ok")){
+                td[j].textContent = null;
+            }
+        }
     }
 }

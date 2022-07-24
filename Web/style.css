@@ -29,6 +29,22 @@ table{
     border-right: solid 2pt rgb(62, 62, 145);
 }
 
+#kaitou tr:first-child{
+    border-top: solid 2pt rgb(62, 62, 145);
+}
+
+#kaitou tr:nth-child(3n){
+    border-bottom: solid 2pt rgb(62, 62, 145);
+}
+
+#kaitou td:first-child{
+    border-left: solid 2pt rgb(62, 62, 145);
+}
+
+#kaitou td:nth-child(3n){
+    border-right: solid 2pt rgb(62, 62, 145);
+}
+
 .click_ok{
     color: rgb(0, 183, 255);
 }
