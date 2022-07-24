@@ -45,8 +45,10 @@ void method2();  //ブロック等である数が入る場所が一つならそ�
 void line(int n);  //method2の一部
 void row(int n);  //method2の一部
 void block(int n);  //method2の一部
-void give_up();  //最終手段として網羅的探索を行う
+int give_up();  //最終手段として網羅的探索を行う
 int answer();
+int TIMEOUT = 1000;
+double start_time = -1;
 
 //マスに入っている数字(入っていない場合は0)
 int num[9][9];
@@ -58,6 +60,14 @@ int pos[9][9][9];
 int finish=0;
 
 int answer(void){
+    /*
+    返り値
+    2: 難しい問題
+    1: 簡単な問題
+    0: ヒントが不十分
+    -1: 解なし
+    -2: タイムアウト
+    */
     int i,j,complete,before,before_pos,num_pos,f;
     finish = 0;
 #ifdef CLOCK
@@ -138,7 +148,10 @@ int answer(void){
     }else{
         //show();
         //printf("失敗しました。網羅的探索を実行します。\n");
-        give_up();
+        f = give_up();
+        if (f == -1){
+            return -2;
+        }
     }
 
     //show();
@@ -2091,8 +2104,13 @@ void block(int n){
 }
 
 //網羅的探索
-void give_up(){
-    int i,j,N,k,l,x,y,f,complete;
+int give_up(){
+    double now_time = time(NULL);
+    //printf("%lf\n", now_time-start_time);
+    if (start_time != -1 && (now_time-start_time) >= TIMEOUT){
+        return -1;
+    }
+    int i,j,N,k,l,x,y,f,complete, flag;
     for(i=0;i<9;i++){
         for(j=0;j<9;j++){
             if(!num[i][j]){
@@ -2122,20 +2140,23 @@ void give_up(){
                             }
                             if(complete){
                                 finish=1;
-                                return;
+                                return 1;
                             }
-                            give_up();
+                            flag = give_up();
+                            if (flag == -1){
+                                return -1;
+                            }
                             if(finish)
-                            return;
+                            return 1;
                             num[i][j]=0;
                         }
                     }
                     if(N==9){
-                        return;
+                        return 1;
                     }
                 }
             }
         }
     }
-    return;
+    return 1;
 }
