@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "sudoku.h"
 #include <time.h>
 int MODE = 2; //1:易しい、2:難しい
@@ -220,11 +221,83 @@ int g(){
         return 1;
 }
 
+void append_data(){
+    FILE *fp;
+    char json_str[10000][500];
+    char str[500];
+    char new_sudoku[500] = "";
+    int count = 0;
+    char tmp[2];
+    char id[6];
+    if (MODE == 1)
+        fp = fopen("Web/json/nanpure_easy.json", "r");
+    else if (MODE == 2)
+        fp = fopen("Web/json/nanpure_hard.json", "r");
+    while(fgets(str, 500, fp) != NULL) {
+		strcpy(json_str[count], str);
+        count ++;
+	}
+    //printf("%d\n", count);
+    //printf("%s", json_str[count-1]);
+    fclose(fp);
+    if (count > 2){
+        json_str[count-2][strlen(json_str[count-2])-1] = '\0';
+        //printf("%s", json_str[count-2]);
+        strcat(json_str[count-2], ",\n");
+    }
+    sprintf(id, "%d", count-1);
+    strcat(new_sudoku, "{\"id\":\"");
+    strcat(new_sudoku, id);
+    strcat(new_sudoku, "\",\"mondai\":[");
+    for (int i = 0; i < 9; i ++){
+        strcat(new_sudoku, "[");
+        for (int j = 0; j < 9; j ++){
+            tmp[0] = (char)(num[i][j]+48);
+            strcat(new_sudoku, tmp);
+            if (j != 8){
+                strcat(new_sudoku, ",");
+            }
+        }
+        strcat(new_sudoku, "]");
+        if (i != 8){
+            strcat(new_sudoku, ",");
+        }
+    }
+    strcat(new_sudoku, "],\"kaitou\":[");
+    answer();
+    for (int i = 0; i < 9; i ++){
+        strcat(new_sudoku, "[");
+        for (int j = 0; j < 9; j ++){
+            tmp[0] = (char)(num[i][j]+48);
+            strcat(new_sudoku, tmp);
+            if (j != 8){
+                strcat(new_sudoku, ",");
+            }
+        }
+        strcat(new_sudoku, "]");
+        if (i != 8){
+            strcat(new_sudoku, ",");
+        }
+    }
+    strcat(new_sudoku, "]}\n");
+    strcpy(json_str[count-1], new_sudoku);
+    count ++;
+    if (MODE == 1)
+        fp = fopen("Web/json/nanpure_easy.json", "w");
+    else if (MODE == 2)
+        fp = fopen("Web/json/nanpure_hard.json", "w");
+    for(int i = 0; i < count; i ++){
+        fprintf(fp, "%s", json_str[i]);
+    }
+    fprintf(fp, "]\n");
+    fclose(fp);
+}
 
 int main(){
     int flag;
     int tmp2[9][9];
     int tmp3[9][9][9];
+    FILE *fp;
     start_time = time(NULL);
     TIMEOUT = 10;
     if (MODE == 2){
@@ -260,11 +333,14 @@ int main(){
             break;
         //printf("end\n");
     }
+    /*
     printf("問題\n");
     show();
     printf("\n");
     printf("解答\n");
     answer();
     show();
+    */
+   append_data();
     return 1;
 }
