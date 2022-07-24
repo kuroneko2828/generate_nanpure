@@ -230,9 +230,9 @@ void append_data(){
     char tmp[2];
     char id[6];
     if (MODE == 1)
-        fp = fopen("Web/json/nanpure_easy.json", "r");
+        fp = fopen("json/nanpure_easy.json", "r");
     else if (MODE == 2)
-        fp = fopen("Web/json/nanpure_hard.json", "r");
+        fp = fopen("json/nanpure_hard.json", "r");
     while(fgets(str, 500, fp) != NULL) {
 		strcpy(json_str[count], str);
         count ++;
@@ -283,9 +283,9 @@ void append_data(){
     strcpy(json_str[count-1], new_sudoku);
     count ++;
     if (MODE == 1)
-        fp = fopen("Web/json/nanpure_easy.json", "w");
+        fp = fopen("json/nanpure_easy.json", "w");
     else if (MODE == 2)
-        fp = fopen("Web/json/nanpure_hard.json", "w");
+        fp = fopen("json/nanpure_hard.json", "w");
     for(int i = 0; i < count; i ++){
         fprintf(fp, "%s", json_str[i]);
     }
