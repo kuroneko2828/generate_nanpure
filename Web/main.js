@@ -51,10 +51,10 @@ function get_mondai(){
     let params = url.searchParams;
     if (params.get('level') == "hard"){
         file_name = "json/nanpure_hard.json";
-        p.textContent="Hard";
+        p.textContent="現在のレベル：Hard";
     }else{
         file_name = "json/nanpure_easy.json";
-        p.textContent="Easy";
+        p.textContent="現在のレベル：Easy";
     }
 
     $.getJSON(file_name)
