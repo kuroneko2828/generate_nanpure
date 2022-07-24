@@ -38,3 +38,5 @@
 # Webアプリ
 
 生成した問題をランダムで表示し、解答できるアプリ。
+
+https://solve-nanpure.herokuapp.com/
