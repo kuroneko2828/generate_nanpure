@@ -1,19 +1,9 @@
-const question = [
-    [3, 7, 0, 1, 8, 5, 4, 2, 0],
-    [1, 0, 4, 0, 9, 2, 6, 5, 7],
-    [0, 0, 0, 0, 4, 0, 0, 3, 8],
-    [0, 4, 0, 0, 0, 9, 3, 0, 0],
-    [0, 3, 0, 0, 7, 0, 0, 9, 0],
-    [0, 0, 5, 4, 0, 0, 0, 7, 0],
-    [4, 1, 0, 0, 2, 0, 0, 0, 0],
-    [5, 2, 7, 8, 6, 0, 9, 0, 3],
-    [0, 6, 3, 9, 1, 7, 0, 4, 5],
-    ];
+let question;
+let answer;
 
-init();
+get_mondai();
 function init(){
     const table = document.getElementById("nanpure");
-    console.log(table)
     //table.innerHTML = "<tr><td>1</td><td>2</td></tr><tr><td>3</td><td>4</td></tr>";
     for(let i = 0; i < 9; i ++){
         let tr = document.createElement("tr");
@@ -43,6 +33,32 @@ function init(){
         tr.appendChild(td)
     }
     kouho.appendChild(tr)
+}
+
+function get_mondai(){
+    $.getJSON("json/nanpure_easy.json")
+    .done(function (json) {
+        var l = json.length;
+        var a = Math.floor(Math.random()*l);
+        question = json[a].mondai;
+        answer = json[a].kaitou;
+    }).fail(function () {
+        // 失敗
+        question = [
+            [3, 7, 0, 1, 8, 5, 4, 2, 0],
+            [1, 0, 4, 0, 9, 2, 6, 5, 7],
+            [0, 0, 0, 0, 4, 0, 0, 3, 8],
+            [0, 4, 0, 0, 0, 9, 3, 0, 0],
+            [0, 3, 0, 0, 7, 0, 0, 9, 0],
+            [0, 0, 5, 4, 0, 0, 0, 7, 0],
+            [4, 1, 0, 0, 2, 0, 0, 0, 0],
+            [5, 2, 7, 8, 6, 0, 9, 0, 3],
+            [0, 6, 3, 9, 1, 7, 0, 4, 5],
+        ];
+    }).always(function () {
+        // 常に最後に処理
+        init();
+    });
 }
 
 let masu = null;
