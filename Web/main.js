@@ -23,6 +23,8 @@ function init(){
                 td.textContent = question[i][j];
             }else{
                 td.textContent = null;
+                td.classList.add("click_ok")
+                td.onclick = select_masu;
             }
             tr.appendChild(td);
         }
@@ -30,10 +32,36 @@ function init(){
     }
     const kouho = document.getElementById("kouho");
     let tr = document.createElement("tr");
+    let td = document.createElement("td");
+    td.onclick = select_kouho;
+    tr.appendChild(td)
+    td.onclick = select_kouho;
     for (let i = 0; i < 9; i  ++){
         let td = document.createElement("td");
         td.textContent = i+1;
+        td.onclick = select_kouho;
         tr.appendChild(td)
     }
     kouho.appendChild(tr)
+}
+
+let masu = null;
+
+function select_masu(e){
+    if (masu != e.target){
+        if (masu != null){
+            masu.classList.remove("clicked");
+        }
+        masu = e.target;
+        masu.classList.add("clicked");
+    }else{
+        masu.classList.remove("clicked");
+        masu = null;
+    }
+}
+
+function select_kouho(e){
+    if (masu != null){
+        masu.textContent =  e.target.textContent;
+    }
 }

@@ -28,3 +28,11 @@ table{
 #nanpure td:nth-child(3n){
     border-right: solid 2pt rgb(62, 62, 145);
 }
+
+.click_ok{
+    color: rgb(0, 183, 255);
+}
+
+.clicked{
+    background-color: antiquewhite;
+}
