@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "sudoku.h"
 #include <time.h>
-int MODE = 2; //1:易しい、2:難しい
+int MODE = 1; //1:易しい、2:難しい
 int pos_g[9][9][9];
 int GIVEN_NUM = 10;
 int REPEAT_COUNT = 5;

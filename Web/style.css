@@ -1,0 +1,30 @@
+table{
+    border-collapse: collapse;
+}
+
+#nanpure{
+    margin-bottom: 20px;
+}
+
+ td{
+    border: solid 1pt rgb(153, 153, 201);
+    width: 50px;
+    height:50px;
+    text-align: center;
+}
+
+#nanpure tr:first-child{
+    border-top: solid 2pt rgb(62, 62, 145);
+}
+
+#nanpure tr:nth-child(3n){
+    border-bottom: solid 2pt rgb(62, 62, 145);
+}
+
+#nanpure td:first-child{
+    border-left: solid 2pt rgb(62, 62, 145);
+}
+
+#nanpure td:nth-child(3n){
+    border-right: solid 2pt rgb(62, 62, 145);
+}
