@@ -46,7 +46,8 @@ function init(){
 
 function get_mondai(){
     let file_name;
-    let p = document.getElementById("title")
+    let p = document.getElementById("title");
+    let mondaisu = document.getElementById("mondaisu");
     let url = new URL(window.location.href);
     let params = url.searchParams;
     if (params.get('level') == "hard"){
@@ -63,6 +64,7 @@ function get_mondai(){
         var a = Math.floor(Math.random()*l);
         question = json[a].mondai;
         answer = json[a].kaitou;
+        mondaisu.textContent = "問題No："+a+"/"+l;
     }).fail(function () {
         // 失敗
         question = [
