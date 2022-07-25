@@ -223,7 +223,7 @@ int g(){
 
 void append_data(){
     FILE *fp;
-    char json_str[10000][500];
+    char json_str[1000][500];
     char str[500];
     char new_sudoku[500] = "";
     int count = 0;
@@ -303,7 +303,7 @@ int generate_sudoku(){
     if (MODE == 2){
         ERROR_COUNT = 1;
     }
-    srand((unsigned int)time(NULL));
+    //srand((unsigned int)time(NULL));
     while(1){
         for(int i = 0; i < 9; i ++){
             for (int j = 0; j < 9; j ++){
