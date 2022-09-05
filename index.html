@@ -8,27 +8,32 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body style="padding: 30px 30px; text-align: center;">
+    <h1>ナンプレ自動生成アプリ</h1>
+    <form style="text-align:right;">
+        <input type="button" value="印刷" onclick="window.print();">
+    </form>
     <p id="title"></p>
     <p id="mondaisu"></p>
     <button onclick="location.href='./'">Easy</button>
     <button onclick="location.href='.?level=hard'">Hard</button>
+    <div style="height: 10px;"></div>
     <table id="nanpure"></table>
     <table id="kouho"></table>
     <script src="main.js"></script>
-    <button type="button" onclick="reset()">リセット</button>
+    <div style="height: 10px;"></div>
+    <button type="button" onclick="reset()">盤面リセット</button>
     <br>
+    <div style="height: 10px;"></div>
     <!-- 折り畳み展開 -->
     <span onclick="obj=document.getElementById('open1').style; obj.display=
     (obj.display=='none')?'block':'none';">
     <a style="cursor:pointer;">▼ 答えを表示</a>
     </span>
-    <ul>
     <!-- 折り畳まれる部分 -->
     <span id="open1" style="display: none; clear: both;">
     <table id="kaitou"></table>
     </span>
-    </ul>
 </body>
 
 </html>
